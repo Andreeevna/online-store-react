@@ -1,10 +1,20 @@
 import React from 'react'
+
+import Footer from '../Footer/Footer'
+import Header from '../Header/Header'
 import AppRoutes from '../Routes/AppRoutes'
+import Sidebar from '../Sidebar/Sidebar'
 
 const App = () => {
 	return (
 		<div className='app'>
-			<AppRoutes />
+			<Header />
+
+			<div className='container'>
+				<Sidebar />
+				<AppRoutes />
+			</div>
+			<Footer />
 		</div>
 	)
 }
