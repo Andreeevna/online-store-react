@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom'
 import styles from '../../styles/Product.module.css'
@@ -7,7 +7,13 @@ import { ROUTES } from '../../utils/routes'
 const SIZES = [4, 4.5, 5]
 
 const Product = ({ price, title, images, description }) => {
-	const currentImage = images[0]
+	const [currentImage, setCurrentImage] = useState()
+	const [currentSize, setCurrentSize] = useState()
+
+	useEffect(() => {
+		if (!images.length) return
+		setCurrentImage(images[0])
+	}, [images])
 	return (
 		<section className={styles.product}>
 			<div className={styles.images}>
@@ -22,7 +28,9 @@ const Product = ({ price, title, images, description }) => {
 								key={i}
 								className={styles.image}
 								style={{ backgroundImage: `url(${image})` }}
-								onClick={() => {}}
+								onClick={() => {
+									setCurrentImage(image)
+								}}
 							/>
 						)
 					})}
@@ -30,7 +38,7 @@ const Product = ({ price, title, images, description }) => {
 			</div>
 			<div className={styles.info}>
 				<h1 className={styles.title}>{title}</h1>
-				<div className={styles.price}>{price}</div>
+				<div className={styles.price}>{price} $</div>
 				<div className={styles.color}>
 					<span>Color:</span> Green
 				</div>
@@ -39,7 +47,15 @@ const Product = ({ price, title, images, description }) => {
 					<div className={styles.list}>
 						{SIZES.map(size => {
 							return (
-								<div key={size} onClick={() => {}} className={`${styles.size}`}>
+								<div
+									key={size}
+									onClick={() => {
+										setCurrentSize(size)
+									}}
+									className={`${styles.size} ${
+										currentSize === size ? styles.active : ''
+									}`}
+								>
 									{size}
 								</div>
 							)
@@ -48,7 +64,9 @@ const Product = ({ price, title, images, description }) => {
 				</div>
 				<p className={styles.description}>{description}</p>
 				<div className={styles.actions}>
-					<button className={styles.add}>Add to cart</button>
+					<button className={styles.add} disabled={!currentSize}>
+						Add to cart
+					</button>
 					<button className={styles.favorite}>Add to favorites</button>
 				</div>
 
