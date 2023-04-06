@@ -16,10 +16,12 @@ const SinglProduct = () => {
 		}
 	}, [isLoading, isFetching, isSuccess])
 
-	return (
-		<div>
+	return !data ? (
+		<section className='preloader'>Loading..</section>
+	) : (
+		<>
 			<Product {...data} />
-		</div>
+		</>
 	)
 }
 

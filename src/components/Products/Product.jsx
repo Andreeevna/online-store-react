@@ -15,7 +15,7 @@ const Product = ({ price, title, images, description }) => {
 					className={styles.current}
 					style={{ backgroundImage: `url(${currentImage})` }}
 				/>
-				{images.map(image, image => {
+				{images.map((image, i) => {
 					return (
 						<div
 							key={i}
