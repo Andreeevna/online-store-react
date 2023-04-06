@@ -1,23 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+import { BASE_URL } from '../../utils/constants'
 
 const initialState = {
-	currentUser: [],
+	currentUser: {},
 	cart: [],
 	isLoading: false,
 }
 
-// export const getCategories =
-// 	createAsyncThunk()
-// 'categories/getCategories',
-// async (_, thunkAPI) => {
-// 	try {
-// 		const res = await axios(`${BASE_URL}/categories`)
-// 		return res.data
-// 	} catch (err) {
-// 		console.log(err)
-// 		return thunkAPI.rejectWithValue(err)
-// 	}
-// }
+export const createUser = createAsyncThunk(
+	'user/createUser',
+	async (body, thunkAPI) => {
+		try {
+			const res = await axios.post(`${BASE_URL}/users`, body)
+			return res.data
+		} catch (err) {
+			console.log(err)
+			return thunkAPI.rejectWithValue(err)
+		}
+	}
+)
 
 const userSlice = createSlice({
 	name: 'user',
@@ -44,10 +46,9 @@ const userSlice = createSlice({
 		// builder.addCase(getCategories.pending, state => {
 		// 	state.isLoading = true
 		// })
-		// builder.addCase(getCategories.fulfilled, (state, action) => {
-		// 	state.list = action.payload
-		// 	state.isLoading = false
-		// })
+		builder.addCase(createUser.fulfilled, (state, action) => {
+			state.currentUser = action.payload
+		})
 		// builder.addCase(getCategories.rejected, state => {
 		// 	state.isLoading = false
 		// })
