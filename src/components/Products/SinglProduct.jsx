@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGetProductQuery } from '../../redux/api/apiSlice'
 import { ROUTES } from '../../utils/routes'
+import Product from './Product'
 
 const SinglProduct = () => {
 	const { id } = useParams()
@@ -11,11 +12,15 @@ const SinglProduct = () => {
 
 	useEffect(() => {
 		if (!isFetching && !isLoading && !isSuccess) {
-			navigate.push(ROUTES.HOME)
+			navigate(ROUTES.HOME)
 		}
 	}, [isLoading, isFetching, isSuccess])
 
-	return <div>SinglProduct</div>
+	return (
+		<div>
+			<Product {...data} />
+		</div>
+	)
 }
 
 export default SinglProduct
