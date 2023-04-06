@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 
+import { useDispatch } from 'react-redux'
+import { createUser } from '../../redux/user/userSlice'
 import styles from '../../styles/User.module.css'
 
 const UserSignUpForm = ({ closeForm }) => {
+	const dispatch = useDispatch()
 	const [values, setValues] = useState({
 		name: '',
 		email: '',
@@ -12,6 +15,16 @@ const UserSignUpForm = ({ closeForm }) => {
 
 	const handleChange = ({ target: { value, name } }) => {
 		setValues({ ...values, [name]: value })
+	}
+
+	const handleSubmit = e => {
+		e.preventDefault()
+
+		const isEmpty = Object.values(values).some(val => !val)
+		if (isEmpty) return
+
+		dispatch(createUser(values))
+		closeForm()
 	}
 	return (
 		<div className={styles.wrapper}>
@@ -23,7 +36,7 @@ const UserSignUpForm = ({ closeForm }) => {
 
 			<div className={styles.title}>Sign Up</div>
 
-			<form className={styles.form}>
+			<form className={styles.form} onSubmit={handleSubmit}>
 				<div className={styles.group}>
 					<input
 						type='email'
