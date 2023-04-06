@@ -15,16 +15,18 @@ const Product = ({ price, title, images, description }) => {
 					className={styles.current}
 					style={{ backgroundImage: `url(${currentImage})` }}
 				/>
-				{images.map((image, i) => {
-					return (
-						<div
-							key={i}
-							className={styles.image}
-							style={{ backgroundImage: `url(${image})` }}
-							onClick={() => {}}
-						/>
-					)
-				})}
+				<div className={styles['images-list']}>
+					{images.map((image, i) => {
+						return (
+							<div
+								key={i}
+								className={styles.image}
+								style={{ backgroundImage: `url(${image})` }}
+								onClick={() => {}}
+							/>
+						)
+					})}
+				</div>
 			</div>
 			<div className={styles.info}>
 				<h1 className={styles.title}>{title}</h1>
