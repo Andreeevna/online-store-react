@@ -3,9 +3,11 @@ import axios from 'axios'
 import { BASE_URL } from '../../utils/constants'
 
 const initialState = {
-	currentUser: {},
+	currentUser: null,
 	cart: [],
 	isLoading: false,
+	formType: 'signup',
+	showForm: false,
 }
 
 export const createUser = createAsyncThunk(
@@ -41,6 +43,10 @@ const userSlice = createSlice({
 
 			state.cart = newCart
 		},
+
+		toggleForm: (state, action) => {
+			state.showForm = action.payload
+		},
 	},
 	extraReducers: builder => {
 		// builder.addCase(getCategories.pending, state => {
@@ -55,6 +61,6 @@ const userSlice = createSlice({
 	},
 })
 
-export const { addItemToCart } = userSlice.actions
+export const { addItemToCart, toggleForm } = userSlice.actions
 
 export default userSlice.reducer

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import styles from '../../styles/User.module.css'
 
-const UserSignUpForm = () => {
+const UserSignUpForm = ({ closeForm }) => {
 	const [values, setValues] = useState({
 		name: '',
 		email: '',
@@ -15,7 +15,7 @@ const UserSignUpForm = () => {
 	}
 	return (
 		<div className={styles.wrapper}>
-			<div className={styles.close}>
+			<div className={styles.close} onClick={closeForm}>
 				<svg className='icon'>
 					<use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`} />
 				</svg>
