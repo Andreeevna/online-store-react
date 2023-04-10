@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
 import { useDispatch } from 'react-redux'
-import { createUser } from '../../redux/user/userSlice'
+import { loginUser } from '../../redux/user/userSlice'
 import styles from '../../styles/User.module.css'
 
-const UserLoginForm = ({ closeForm }) => {
+const UserLoginForm = ({ toogleCurrentTypeForm, closeForm }) => {
 	const dispatch = useDispatch()
 	const [values, setValues] = useState({
 		email: '',
@@ -21,7 +21,7 @@ const UserLoginForm = ({ closeForm }) => {
 		const isEmpty = Object.values(values).some(val => !val)
 		if (isEmpty) return
 
-		dispatch(createUser(values))
+		dispatch(loginUser(values))
 		closeForm()
 	}
 	return (
@@ -59,7 +59,12 @@ const UserLoginForm = ({ closeForm }) => {
 					/>
 				</div>
 
-				<div className={styles.link}>Create an account</div>
+				<div
+					className={styles.link}
+					onClick={() => toogleCurrentTypeForm('signup')}
+				>
+					Create an account
+				</div>
 				<button type='submit' className={styles.submit}>
 					Login
 				</button>
