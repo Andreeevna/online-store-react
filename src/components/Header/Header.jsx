@@ -13,6 +13,8 @@ import styles from '../../styles/Header.module.css'
 const Header = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+
+	const [searchValue, setSearchValue] = useState('')
 	const { currentUser } = useSelector(({ user }) => user)
 
 	const [value, setValue] = useState({ name: 'Guest', avatar: AVATAR })
@@ -27,6 +29,10 @@ const Header = () => {
 		else {
 			navigate(ROUTES.PROFILE)
 		}
+	}
+
+	const handleSearch = ({ target: { value } }) => {
+		setSearchValue(value)
 	}
 
 	return (
@@ -56,8 +62,8 @@ const Header = () => {
 							name='search'
 							placeholder='Search for anything..'
 							autoComplete='off'
-							onChange={() => {}}
-							value=''
+							onChange={handleSearch}
+							value={searchValue}
 						/>
 					</div>
 
