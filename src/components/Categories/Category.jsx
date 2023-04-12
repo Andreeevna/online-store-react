@@ -109,7 +109,6 @@ const Category = () => {
 					/>
 					<span>Price to</span>
 				</div>
-
 				<button type='submit' hidden />
 			</form>
 
@@ -136,7 +135,7 @@ const Category = () => {
 							setParams({ ...params, offset: params.offset + params.limit })
 						}
 					>
-						See more
+						See more..
 					</button>
 				</div>
 			)}
