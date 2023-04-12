@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addItemToCart } from '../../redux/user/userSlice'
+import { addItemToCart, removeItemFromCart } from '../../redux/user/userSlice'
 import styles from '../../styles/Cart.module.css'
 import { sumBy } from '../../utils/common'
 
@@ -12,9 +12,9 @@ const Cart = () => {
 		dispatch(addItemToCart({ ...item, quantity }))
 	}
 
-	// const removeItem = id => {
-	// 	dispatch(removeItemFromCart(id))
-	// }
+	const removeItem = id => {
+		dispatch(removeItemFromCart(id))
+	}
 
 	return (
 		<section className={styles.cart}>
@@ -75,7 +75,7 @@ const Cart = () => {
 
 									<div
 										className={styles.close}
-										// onClick={() => removeItem(item.id)}
+										onClick={() => removeItem(item.id)}
 									>
 										<svg className='icon'>
 											<use
