@@ -12,9 +12,9 @@ const Cart = () => {
 		dispatch(addItemToCart({ ...item, quantity }))
 	}
 
-	const removeItem = id => {
-		dispatch(removeItemFromCart(id))
-	}
+	// const removeItem = id => {
+	// 	dispatch(removeItemFromCart(id))
+	// }
 
 	return (
 		<section className={styles.cart}>
@@ -75,7 +75,7 @@ const Cart = () => {
 
 									<div
 										className={styles.close}
-										onClick={() => removeItem(item.id)}
+										// onClick={() => removeItem(item.id)}
 									>
 										<svg className='icon'>
 											<use
