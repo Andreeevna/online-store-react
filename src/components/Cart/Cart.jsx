@@ -1,6 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItemToCart } from '../../redux/user/userSlice'
 import styles from '../../styles/Cart.module.css'
+import { sumBy } from '../../utils/common'
 
 const Cart = () => {
 	const dispatch = useDispatch()
