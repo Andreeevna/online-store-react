@@ -10,7 +10,7 @@ import './styles/index.css'
 
 createRoot(document.getElementById('root')).render(
 	<Provider store={store}>
-		<HashRouter>
+		<HashRouter basename={window.location.pathname || ''}>
 			<App />
 		</HashRouter>
 	</Provider>
